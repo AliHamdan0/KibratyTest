@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Welcome from "./components/welcome/welcome";
+import FormCategory from "./components/formCategory";
+import SignUp from "./components/signUp";
+import { BrowserRouter as Router, Routes, Link, Route } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 function App() {
+  let theme = createTheme({
+    palette: {
+      primary: {
+        main: "#1fbdf2",
+      },
+      secondary: {
+        main: "#f4c479",
+      },
+    },
+  });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Routes>
+            <Route exact path="/" element={<Welcome />} />
+            <Route exact path="/formCategory" element={<FormCategory />} />
+            <Route exact path="/SignUp" element={<SignUp />} />
+          </Routes>
+        </Router>
+      </ThemeProvider>
     </div>
   );
 }
